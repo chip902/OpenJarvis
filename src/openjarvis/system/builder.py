@@ -116,6 +116,13 @@ class SystemBuilder:
         config = self._config
         bus = self._bus or get_event_bus()
 
+        # Out-of-tree plugin registration (e.g. the FRIDAY overlay): import any
+        # packages named in OPENJARVIS_PLUGINS so their @Registry.register
+        # decorators fire before subsystem resolution. See system/_plugins.py.
+        from openjarvis.system._plugins import load_plugins
+
+        load_plugins()
+
         engine, engine_key = self._resolve_engine(config)
         model = self._resolve_model(config, engine)
 
