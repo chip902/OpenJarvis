@@ -12,10 +12,10 @@ def test_legacy_fallback_when_nothing_configured():
 def test_uses_configured_chat_engine_and_model():
     cfg = JarvisConfig()
     cfg.engine.default = "lmstudio"
-    cfg.intelligence.default_model = "qwen3.5-9b-uncensored-hauhaucs-aggressive"
+    cfg.intelligence.default_model = "fine-tuned-model"
     assert _resolve_planner(cfg) == (
         "lmstudio",
-        "qwen3.5-9b-uncensored-hauhaucs-aggressive",
+        "fine-tuned-model",
     )
 
 
